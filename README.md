@@ -8,7 +8,7 @@ Copyright for these projects is held by "TTCO Holding Company, Inc. and Contribu
 
 ## Licensing
 
-Each publicly visible repository will declare the license under which it is declared.
+Each publicly visible repository will declare its license.
 - The [Apache License, Version 2.0](https://opensource.org/licenses/Apache-2.0) is the preferred license for source code.
 - The [Creative Commons Attribution 4.0 International Public License (CC-BY)](https://creativecommons.org/licenses/by/4.0/) is preferred for documentation.
 
