@@ -39,7 +39,7 @@ Each repository that accepts contributions will link to the appropriate coding s
 Each publicly-visible repository should have the following settings:
 - Default branch named `main`.
 - A Branch Protection Rule applied to `main` that enforces the following:
--- `Require pull request reviews before merging` with at least 1 reviewer
--- `Dismiss stale pull request approvals when new commits are pushed`
--- `Require signed commits`
--- `Require linear history`
+    - `Require pull request reviews before merging` with at least 1 reviewer
+    - `Dismiss stale pull request approvals when new commits are pushed`
+    - `Require signed commits`
+    - `Require linear history`
