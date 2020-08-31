@@ -33,7 +33,7 @@ Because this list will need to change over time, the criteria for consideration 
 We will consider submissions using any official release of .NET Standard, but prefer 2.0.
 
 ### .NET Core and .NET 5+
-We will consider:
+We will consider submissions targeting:
 - The most recent official release.
 - The most recent Long Term Support (LTS) release, if different from above.
 - Language-stable previews and release candidates _for prototype submissions only_.
