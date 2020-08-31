@@ -37,6 +37,6 @@ Each publicly-visible repository should have the following settings:
 	
 ## Code Style and Workflow
 Please see the contribution guides for specific technology teams.
-- [.NET Contribution Guid](/dotnet.md)
+- [.NET Contribution Guide](/dotnet.md)
 
 Each repository that accepts contributions may have more specific requirements based on its content.
