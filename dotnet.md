@@ -21,7 +21,7 @@ Some exceptions may be made for constructor signatures where dependencies are ex
   - Adding a new method overload is an _addition_. Adding a new parameter to a method/constructor signature is a _change_, even if the parameter is optional.
   - Adding a parameterless constructor to an existing type that previously had no constructor is an _addition_. Constructor overloads or signature changes are _changes_.
 
-## Project Target Frameworks
+## Target Frameworks
 We currently prefer the following target frameworks for new submissions:
 - `netstandard2.0` for projects intended to be consumed in .NET Framework.
 - `netcoreapp3.1` until the release of .NET 6.
