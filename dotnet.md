@@ -8,14 +8,18 @@ Additionally, make sure your contributions have passing test coverage before sub
 
 ## API Changes/Additions
 *What is an API change?*
-- Change to the name or scope of a public or protected interface, class, property, field, method, indexer, or constructor.
-- Change to the signature of a public or protected method, indexer, or constructor.
+- Change to the name or scope of a public or protected type (interface, class, struct, record) or member (property, field, method, indexer, or constructor).
+- Change to the signature of a public or protected member.
+- Adding a constructor to an existing type.
 - Any other change that would require a code change for consumers to use the new functionality.
 API Changes are considered _breaking_. Breaking changes are accepted only as a last-resort bug fix or as part of a major planned refactor.
 Some exceptions may be made for constructor signatures where dependencies are expected to be resolved by a container.
 
 *What is an API addition?*
-- A new public or protected interface, class, property, field, method, indexer, or constructor.
+- A new public or protected type and its members.
+- A new public or protected member (except constructors) in an existing type that does not affect the accessibility of existing members. Examples:
+  - Adding a new method overload is an _addition_. Adding a new parameter to a method/constructor signature is a _change_, even if the parameter is optional.
+  - Adding a parameterless constructor to an existing type that previously had no constructor is an _addition_. Constructor overloads or signature changes are _changes_.
 
 ## Project Target Frameworks
 We currently prefer the following target frameworks for new submissions:
@@ -86,6 +90,6 @@ Code owners will assign and adjust package version numbers as needed using the f
 - For backward-compatible API additions, increment the `minor` version.
 - For all other changes, increment the `patch` version.
 
-> Should relatively trivial API changes force a `major` version change? Should a large number of new features only increment the `minor` version?.
+> Should relatively trivial API changes force a `major` version change? Should a large number of new features only increment the `minor` version?
 
 Yes on both counts. We do not engage in _romantic_ versioning. Package versions exist to prevent seemingly trivial changes from breaking builds; they are to be read by machines rather than humans.
