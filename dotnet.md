@@ -1,8 +1,8 @@
 # .NET Contribution Guide
-This guide desribues the types of projects and code style for submissions using the .NET platform.
+This guide describes the types of projects and code style for submissions using the .NET platform.
 
 ## Workflow
-Please use the [Suggested Workflow section of the .NET Contribution](https://github.com/dotnet/coreclr/blob/master/Documentation/project-docs/contributing-workflow.md#suggested-workflow).
+Please use the [Suggested Workflow for .NET Core Contributions](https://github.com/dotnet/coreclr/blob/master/Documentation/project-docs/contributing-workflow.md#suggested-workflow).
 
 Additionally, make sure your contributions have passing test coverage before submitting.
 
