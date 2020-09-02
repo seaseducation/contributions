@@ -53,32 +53,42 @@ For non code files (xml, etc), our current best guidance is consistency. When ed
 1. We use C# for .NET projects. 
    - Submissions using F# will be given consideration if the language use is appropriate. 
    - Submissions in Visual Basic will not be accepted.
-2. We use [Allman style](http://en.wikipedia.org/wiki/Indent_style#Allman_style) braces, where each brace begins on a new line. A single line statement block can go without braces but the block must be properly indented on its own line and must not be nested in other statement blocks that use braces (See rule 17 for more details). One exception is that a `using` statement is permitted to be nested within another `using` statement by starting on the following line at the same indentation level, even if the nested `using` contains a controlled block.
-3. We use four spaces of indentation (no tabs).
-4. We use `_camelCase` for internal and private fields and use `readonly` where possible. 
-   - Prefix internal and private instance fields with `_`, static fields with `s_` and thread static fields with `t_`. 
+2. We run Code Cleanup (`Ctrl+K, Ctrl+E` in Visual Studio or the broom icon at the bottom of the code window) on modified files. You can apply many of our code style rules by adding the following fixers to your Code Cleanup profile:
+   - Apply file header preferences
+   - Format document
+   - Sort usings
+   - Remove unnecessary usings
+   - Remove unused variables
+   - Remove unnecessary casts
+   - Add accessibility modifiers
+   - Sort accessibility modifiers
+   - Make private fields readonly when possible
+   - Apply language/framework type preferences   
+3. We use [Allman style](http://en.wikipedia.org/wiki/Indent_style#Allman_style) braces, where each brace begins on a new line. A single line statement block can go without braces but the block must be properly indented on its own line and must not be nested in other statement blocks that use braces (See rule 20 for more details). One exception is that a `using` statement is permitted to be nested within another `using` statement by starting on the following line at the same indentation level, even if the nested `using` contains a controlled block.
+4. We use four spaces of indentation (no tabs). This is specified in `.editorconfig`.
+5. We use `camelCase` for internal and private fields and use `readonly` where possible. 
+   - Do not prefix field names (e.g., `m_foo` or `str_foo`). 
    - When used on static fields, `readonly` should come after `static` (e.g. `static readonly` not `readonly static`).  
    - Public fields should be used sparingly and should use PascalCasing with no prefix when used.
-5. We avoid `this.` unless absolutely necessary. 
-6. We always specify the visibility, even if it's the default (e.g. `private string _foo` not `string _foo`). Visibility should be the first modifier (e.g. `public abstract` not `abstract public`).
-7. Namespace imports should be specified at the top of the file, *outside* of `namespace` declarations.
-   - Namespaces should be sorted alphabetically, with the exception of `System.*` namespaces, which are to be placed on top of all others.
-8. Avoid more than one empty line at any time. For example, do not have two blank lines between members of a type.
-9. Avoid spurious free spaces. For example avoid `if (someVar == 0)...`, where the dots mark the spurious free spaces.
-   Consider enabling "View White Space (Ctrl+R, Ctrl+W)" or "Edit -> Advanced -> View White Space" if using Visual Studio to aid detection.
-10. If a file happens to differ in style from these guidelines (e.g. private members are named `m_member` rather than `_member`), the existing style in that file takes precedence.
-11. We only use `var` when it's obvious what the variable type is (e.g. `var stream = new FileStream(...)` not `var stream = OpenStandardInput()`).
-12. We use language keywords instead of BCL types (e.g. `int, string, float` instead of `Int32, String, Single`, etc) for both type references as well as method calls (e.g. `int.Parse` instead of `Int32.Parse`). See issue [391](https://github.com/dotnet/corefx/issues/391) for examples.
-13. We use PascalCasing to name all our constant local variables and fields. The only exception is for interop code where the constant value should exactly match the name and value of the code you are calling via interop.
-14. We use ```nameof(...)``` instead of ```"..."``` whenever possible and relevant.
-15. Fields should be specified at the top within type declarations.
-16. When including non-ASCII characters in the source code use Unicode escape sequences (\uXXXX) instead of literal characters. Literal non-ASCII characters occasionally get garbled by a tool or editor.
-17. When using labels (for goto), indent the label one less than the current indentation.
-18. When using a single-statement if, we follow these conventions:
-    - Never use single-line form (for example: `if (source == null) throw new ArgumentNullException("source");`)
-    - Using braces is always accepted, and required if any block of an `if`/`else if`/.../`else` compound statement uses braces or if a single statement body spans multiple lines.
-    - Braces may be omitted only if the body of *every* block associated with an `if`/`else if`/.../`else` compound statement is placed on a single line.
-19. String literals that will be user-facing should reference a [resource file](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/localization?view=aspnetcore-3.1#resource-files) entry. 
+6. We avoid superfluous use of `this.`.
+7. We always specify the visibility, even if it's the default (e.g. private string _foo not string _foo). Visibility should be the first modifier (e.g. `public abstract` not `abstract public`). Code Cleanup can apply this for you.
+8. Namespace imports should be specified at the top of the file, *outside* of `namespace` declarations.
+9. Namespaces should be sorted alphabetically. Code Cleanup can apply this for you.
+10. Avoid more than one empty line at any time. For example, do not have two blank lines between members of a type.
+11. Avoid spurious free spaces. For example avoid `if (someVar == 0)...`, where the dots mark the spurious free spaces.
+    Code Cleanup can apply this for you.
+12. If a file happens to differ in style from these guidelines (e.g. private members are named `m_member` rather than `member`), the existing style in that file takes precedence.
+13. We prefer the use of `var` except when it is difficult to infer the variable type from usage (e.g., `var validators = GetValidators();` vs `IEnumerable<IValidator<ReallyLongTypeName>> validators = GetValidators();`).
+14. We use language keywords instead of BCL types (e.g. `int, string, float` instead of `Int32, String, Single`, etc) for both type references as well as method calls (e.g. `int.Parse` instead of `Int32.Parse`).
+15. We use PascalCasing to name all our constant local variables and fields. The only exception is for interop code where the constant value should exactly match the name and value of the code you are calling via interop.
+16. We use ```nameof(...)``` instead of ```"..."``` whenever possible and relevant.
+17. Fields should be specified at the top within type declarations.
+18. When including non-ASCII characters in the source code use Unicode escape sequences (\uXXXX) instead of literal characters. Literal non-ASCII characters occasionally get garbled by a tool or editor.
+19. When using labels (for goto), indent the label one less than the current indentation.
+20. When using a single-statement `if`, we follow these conventions:
+	- Only use single-line form for guard clauses (for example: `if (source == null) throw new ArgumentNullException(nameof(source));`).
+    - Braces are required for all other `if` statements.
+21. String literals that will be user-facing should reference a [resource file](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/localization?view=aspnetcore-3.1#resource-files) entry. 
     Resource files should be named using [this convention](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/localization?view=aspnetcore-3.1#resource-file-naming).
 	This applies to all submissions, and not just ASP.NET.
 	
