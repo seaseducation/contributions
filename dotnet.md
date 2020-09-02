@@ -64,7 +64,10 @@ For non code files (xml, etc), our current best guidance is consistency. When ed
    - Sort accessibility modifiers
    - Make private fields readonly when possible
    - Apply language/framework type preferences   
-3. We use [Allman style](http://en.wikipedia.org/wiki/Indent_style#Allman_style) braces, where each brace begins on a new line. A single line statement block can go without braces but the block must be properly indented on its own line and must not be nested in other statement blocks that use braces (See rule 20 for more details). One exception is that a `using` statement is permitted to be nested within another `using` statement by starting on the following line at the same indentation level, even if the nested `using` contains a controlled block.
+3. We use [Allman style](http://en.wikipedia.org/wiki/Indent_style#Allman_style) braces, where each brace begins on a new line. A single line statement block can go without braces only in the following conditions:
+   - Guard clauses (for example: `if (source == null) throw new ArgumentNullException(nameof(source));`). See point 20 for more information.
+   - Nested `using` blocks where the nested block begins on the next line.
+   - Inline expression-bodied functions (for example: `int GetFoo() => foo;`.
 4. We use four spaces of indentation (no tabs). This is specified in `.editorconfig`.
 5. We use `camelCase` for internal and private fields and use `readonly` where possible. 
    - Do not prefix field names (e.g., `m_foo` or `str_foo`). 
@@ -87,7 +90,7 @@ For non code files (xml, etc), our current best guidance is consistency. When ed
 19. When using labels (for goto), indent the label one less than the current indentation.
 20. When using a single-statement `if`, we follow these conventions:
 	- Only use single-line form for guard clauses (for example: `if (source == null) throw new ArgumentNullException(nameof(source));`).
-    - Braces are required for all other `if` statements.
+    - Braces and proper indentation are required for all other `if` statements.
 21. String literals that will be user-facing should reference a [resource file](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/localization?view=aspnetcore-3.1#resource-files) entry. 
     Resource files should be named using [this convention](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/localization?view=aspnetcore-3.1#resource-file-naming).
 	This applies to all submissions, and not just ASP.NET.
